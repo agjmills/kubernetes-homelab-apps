@@ -3,7 +3,7 @@ image:
 
 parent:
   envFrom: 
-    ## Create it with: kubectl create secret generic netdata --from-literal="NETDATA_CLAIM_TOKEN=<token>"
+    ## Create it with: kubectl create secret generic netdata --from-literal="NETDATA_CLAIM_TOKEN=<token>" -n netdata
     - secretRef:
         name: netdata
   claiming:
