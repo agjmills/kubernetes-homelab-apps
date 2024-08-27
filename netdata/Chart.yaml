@@ -11,4 +11,3 @@ spec:
   - repoURL: 'https://github.com/agjmills/kubernetes-homelab-apps/charts'
     targetRevision: main
     ref: values
-
