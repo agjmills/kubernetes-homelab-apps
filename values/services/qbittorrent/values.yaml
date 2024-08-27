@@ -21,3 +21,11 @@ persistence:
     storageClass: "longhorn"
     accessMode: ReadWriteOnce
     size: 10Gi
+
+ingress:
+  main:
+    enabled: false
+    hosts:
+      - host: download.asdfx.us
+        paths:
+          - path: /
