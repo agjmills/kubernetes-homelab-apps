@@ -17,5 +17,5 @@ k8sState:
   envFrom:
     - secretRef:
         name: netdata
-service:
-  clusterIP: None
+ingress:
+  enabled: false
