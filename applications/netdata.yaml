@@ -2,21 +2,17 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: netdata
-  namespace: argocd
+  namespace: netdata
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/netdata/helmchart/charts'
+    repoURL: https://github.com/agjmills/kubernetes-homelab-apps/charts
     chart: netdata
     targetRevision: HEAD
-    helm:
-      valueFiles:
-      - $values/values/netdata/values.yaml
-  - repoURL: 'https://github.com/agjmills/kubernetes-homelab-apps/'
-    targetRevision: main
-    ref: values
   destination:
-    server: 'https://kubernetes.default.svc'
+    server: https://kubernetes.default.svc
     namespace: netdata
   syncPolicy:
     automated:
