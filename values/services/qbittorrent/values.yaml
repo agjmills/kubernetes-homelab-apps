@@ -24,7 +24,7 @@ persistence:
 
 ingress:
   main:
-    enabled: false
+    enabled: true
     hosts:
       - host: download.asdfx.us
         paths:
