@@ -62,7 +62,7 @@ spec:
   entryPoints: 
     - web
   routes:
-  - match: Path(`/longhorn`) 
+  - match: PathPrefix(`/longhorn`) 
     kind: Rule
     middlewares:
     - name: longhorn-auth
