@@ -24,3 +24,6 @@ k8sState:
   envFrom:
     - secretRef:
         name: netdata
+
+ingress:
+  enabled: false
