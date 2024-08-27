@@ -1,4 +1,5 @@
 preUpgradeChecker:
   jobEnabled: false
 ingress:
+  enabled: true
   path: /longhorn
