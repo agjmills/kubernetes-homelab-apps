@@ -1,0 +1,22 @@
+image:
+  tag: edge
+parent:
+  envFrom: 
+    ## Create it with: kubectl create secret generic netdata --from-literal="NETDATA_CLAIM_TOKEN=<token>" -n netdata
+    - secretRef:
+        name: netdata
+  claiming:
+    enabled: true
+child:
+  envFrom: 
+    - secretRef:
+        name: netdata
+  claiming:
+    enabled: true
+k8sState:
+  envFrom:
+    - secretRef:
+        name: netdata
+server:
+  service:
+    type: LoadBalancer
