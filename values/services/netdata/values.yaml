@@ -17,6 +17,5 @@ k8sState:
   envFrom:
     - secretRef:
         name: netdata
-server:
-  service:
-    type: LoadBalancer
+service:
+  clusterIP: None
