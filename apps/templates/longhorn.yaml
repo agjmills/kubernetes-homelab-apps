@@ -6,6 +6,7 @@ metadata:
   namespace: argocd
 spec:
   syncPolicy:
+    automated: {}
     syncOptions:
       - CreateNamespace=true
   project: default
@@ -22,16 +23,3 @@ spec:
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: longhorn-system
----
-# Generate a password with this:
-# USER=<USERNAME_HERE>; PASSWORD=<PASSWORD_HERE>; echo "${USER}:$(openssl passwd -stdin -apr1 <<< ${PASSWORD})" >> auth
-# Store it as a secret in the cluster:
-# kubectl -n longhorn-system create secret generic basic-auth --from-file=auth
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
-metadata:
-  name: longhorn-auth
-  namespace: longhorn-system
-spec:
-  basicAuth:
-    secret: basic-auth
