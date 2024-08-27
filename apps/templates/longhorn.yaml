@@ -35,38 +35,3 @@ metadata:
 spec:
   basicAuth:
     secret: basic-auth
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: longhorn-ui
-  name: longhorn-frontend
-  namespace: longhorn-system
-spec:
-  ports:
-  - port: 8000
-    protocol: TCP
-    targetPort: 8000
-    name: web
-  selector:
-    app: longhorn-ui
----
-kind: IngressRoute
-apiVersion: traefik.containo.us/v1alpha1
-metadata:
-  name: longhorn-frontend
-  namespace: longhorn-system
-
-spec:
-  entryPoints: 
-    - web
-  routes:
-  - match: PathPrefix(`/longhorn`) 
-    kind: Rule
-    middlewares:
-    - name: longhorn-auth
-      namespace: longhorn-system
-    services:
-    - name: longhorn-frontend
-      port: 8000
