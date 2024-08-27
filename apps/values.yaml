@@ -4,3 +4,7 @@ spec:
   source:
     repoURL: https://github.com/agjmills/kubernetes-homelab-apps
     targetRevision: HEAD
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
