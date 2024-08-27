@@ -16,7 +16,7 @@ spec:
     #   targetRevision: HEAD
     - chart: jellyfin
       repoURL: https://gitea.scubbo.org/scubbo/helm-charts
-      targetRevision: ab2d7a3c30c1e8cea9075abfc168a591945ba331
+      targetRevision: HEAD
       path: charts/jellyfin
       # helm:
       #   valueFiles:
