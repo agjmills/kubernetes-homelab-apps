@@ -1,0 +1,26 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jellyfin
+  namespace: argocd
+spec:
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
+  project: default
+  sources:
+    # - ref: values
+    #   repoURL: https://github.com/agjmills/kubernetes-homelab-apps
+    #   targetRevision: HEAD
+    - chart: jellyfin
+      repoURL: https://gitea.scubbo.org/scubbo/helm-charts/charts
+      targetRevision: ab2d7a3c30
+      path: jellyfin
+      # helm:
+      #   valueFiles:
+      #     - $values/values/services/longhorn/values.yaml
+  destination:
+    server: {{ .Values.spec.destination.server }}
+    namespace: jellyfin-system
