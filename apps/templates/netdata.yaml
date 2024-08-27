@@ -11,9 +11,33 @@ spec:
     server: {{ .Values.spec.destination.server }}
   project: default
   source:
-    path: netdata
-    repoURL: {{ .Values.spec.source.repoURL }}
-    targetRevision: {{ .Values.spec.source.targetRevision }}
+    helm:
+      valuesObject:
+        image:
+          tag: edge
+        parent:
+          envFrom: 
+            ## Create it with: kubectl create secret generic netdata --from-literal="NETDATA_CLAIM_TOKEN=<token>" -n netdata
+            - secretRef:
+                name: netdata
+          claiming:
+            enabled: true
+        child:
+          envFrom: 
+            - secretRef:
+                name: netdata
+          claiming:
+            enabled: true
+        k8sState:
+          envFrom:
+            - secretRef:
+                name: netdata
+        server:
+          service:
+            type: LoadBalancer
+    chart: netdata
+    repoURL: https://netdata.github.io/helmchart/
+    targetRevision: 3.7.99
   syncPolicy:
     automated: {}
     syncOptions:
