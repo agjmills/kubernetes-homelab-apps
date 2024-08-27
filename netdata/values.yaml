@@ -1,0 +1,12 @@
+image:
+  tag: edge
+parent:
+  claiming:
+    enabled: true
+    token: "foo"
+    rooms: "bar"
+child:
+  claiming:
+    enabled: true
+    token: "foo"
+    rooms: "bar"
