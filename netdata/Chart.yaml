@@ -1,5 +1,6 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
+name: netdata
 spec:
   sources:
   - repoURL: 'https://github.com/netdata/helmchart/charts'
