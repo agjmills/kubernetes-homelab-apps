@@ -4,3 +4,4 @@ ingress:
   enabled: true
   path: /
   host: longhorn.asdfx.us
+  secureBackends: true
