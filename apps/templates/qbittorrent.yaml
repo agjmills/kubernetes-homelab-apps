@@ -1,0 +1,25 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: qbittorrent
+  namespace: argocd
+spec:
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
+  project: default
+  sources:
+    - ref: values
+      repoURL: https://github.com/agjmills/kubernetes-homelab-apps
+      targetRevision: HEAD
+    - chart: qbittorrent
+      repoURL: https://charts.gabe565.com
+      targetRevision: 0.3.6
+      helm:
+        valueFiles:
+          - $values/values/services/qbittorrent/values.yaml
+  destination:
+    server: {{ .Values.spec.destination.server }}
+    namespace: qbittorrent
