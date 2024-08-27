@@ -9,7 +9,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://gitea.scubbo.org/scubbo/helm-charts.git
+    repoURL: https://github.com/agjmills/kubernetes-homelab-apps
     targetRevision: HEAD
     path: charts/jellyfin
 
