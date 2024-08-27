@@ -1,3 +1,4 @@
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -21,3 +22,51 @@ spec:
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: longhorn-system
+---
+# Generate a password with this:
+# USER=<USERNAME_HERE>; PASSWORD=<PASSWORD_HERE>; echo "${USER}:$(openssl passwd -stdin -apr1 <<< ${PASSWORD})" >> auth
+# Store it as a secret in the cluster:
+# kubectl -n longhorn-system create secret generic basic-auth --from-file=auth
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: longhorn-auth
+  namespace: longhorn-system
+spec:
+  basicAuth:
+    secret: basic-auth
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: longhorn-ui
+  name: longhorn-frontend
+  namespace: longhorn-system
+spec:
+  ports:
+  - port: 8000
+    protocol: TCP
+    targetPort: 8000
+    name: web
+  selector:
+    app: longhorn-ui
+---
+kind: IngressRoute
+apiVersion: traefik.containo.us/v1alpha1
+metadata:
+  name: longhorn-frontend
+  namespace: longhorn-system
+
+spec:
+  entryPoints: 
+    - web
+  routes:
+  - match: Path(`/longhorn`) 
+    kind: Rule
+    middlewares:
+    - name: longhorn-auth
+      namespace: longhorn-system
+    services:
+    - name: longhorn-frontend
+      port: 8000
