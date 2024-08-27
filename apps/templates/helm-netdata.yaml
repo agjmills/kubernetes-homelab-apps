@@ -2,12 +2,12 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: helm-netdata
-  namespace: netdata
+  namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: helm-netdata
+    namespace: netdata
     server: {{ .Values.spec.destination.server }}
   project: default
   source:
