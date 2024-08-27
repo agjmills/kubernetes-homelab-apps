@@ -1,6 +1,6 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
+apiVersion: v2
 name: netdata
+type: application
 version: 1.0.0
 spec:
   sources:
