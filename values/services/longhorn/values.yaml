@@ -2,4 +2,6 @@ preUpgradeChecker:
   jobEnabled: false
 ingress:
   enabled: true
-  path: /longhorn
+  path: /
+  host: longhorn.asdfx.us
+  tls: true
