@@ -15,9 +15,9 @@ spec:
     #   repoURL: https://github.com/agjmills/kubernetes-homelab-apps
     #   targetRevision: HEAD
     - chart: jellyfin
-      repoURL: https://gitea.scubbo.org/scubbo/helm-charts/charts
-      targetRevision: ab2d7a3c30
-      path: jellyfin
+      repoURL: https://gitea.scubbo.org/scubbo/helm-charts
+      targetRevision: ab2d7a3c30c1e8cea9075abfc168a591945ba331
+      path: charts/jellyfin
       # helm:
       #   valueFiles:
       #     - $values/values/services/longhorn/values.yaml
