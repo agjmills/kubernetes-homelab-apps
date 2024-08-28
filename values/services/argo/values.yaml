@@ -1,0 +1,11 @@
+global:
+  domain: argo.asdfx.us
+
+configs:
+  params:
+    server.insecure: true
+
+server:
+  ingress:
+    enabled: true
+    tls: false
