@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helm-netdata
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: netdata
+    server: {{ .Values.spec.destination.server }}
+  project: default
+  sources:
+    - ref: values
+      repoURL: https://github.com/agjmills/kubernetes-homelab-apps
+      targetRevision: HEAD
+    - chart: invoiceninja
+      repoURL: https://github.com/invoiceninja/dockerfiles.git
+      path: charts
+      targetRevision: 5.10.26
+      helm:
+        valueFiles:
+          - $values/values/services/invoiceninja/values.yaml
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
