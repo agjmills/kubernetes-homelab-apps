@@ -1,2 +1,4 @@
 ingress:
   hostname: billing.asdfx.us
+  tls: true
+  certManager: false
