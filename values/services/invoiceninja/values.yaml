@@ -2,3 +2,11 @@ ingress:
   hostname: billing.asdfx.us
   tls: true
   certManager: false
+existingSecret: invoiceninja-passwords
+mariadb:
+  auth:
+    existingSecret: invoiceninja-passwords
+redis:
+  auth:
+    existingSecret: invoiceninja-passwords
+    existingSecretPasswordKey: redis-password    

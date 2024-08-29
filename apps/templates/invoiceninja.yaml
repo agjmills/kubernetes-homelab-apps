@@ -11,9 +11,7 @@ metadata:
   namespace: "invoiceninja"
 spec:
   forceRegenerate: false
-  data: {
-    existingSecretPasswordKey: "redis-password"
-  }
+  data: {}
   fields:
     - fieldName: "APP_KEY"
       encoding: "base64"
