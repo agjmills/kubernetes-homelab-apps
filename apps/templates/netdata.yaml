@@ -1,26 +1,26 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: helm-netdata
-  namespace: argocd
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
-spec:
-  destination:
-    namespace: netdata
-    server: {{ .Values.spec.destination.server }}
-  project: default
-  sources:
-    - ref: values
-      repoURL: https://github.com/agjmills/kubernetes-homelab-apps
-      targetRevision: HEAD
-    - chart: netdata
-      repoURL: https://netdata.github.io/helmchart/
-      targetRevision: 3.7.99
-      helm:
-        valueFiles:
-          - $values/values/services/netdata/values.yaml
-  syncPolicy:
-    automated: {}
-    syncOptions:
-      - CreateNamespace=true
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: helm-netdata
+#   namespace: argocd
+#   finalizers:
+#   - resources-finalizer.argocd.argoproj.io
+# spec:
+#   destination:
+#     namespace: netdata
+#     server: {{ .Values.spec.destination.server }}
+#   project: default
+#   sources:
+#     - ref: values
+#       repoURL: https://github.com/agjmills/kubernetes-homelab-apps
+#       targetRevision: HEAD
+#     - chart: netdata
+#       repoURL: https://netdata.github.io/helmchart/
+#       targetRevision: 3.7.99
+#       helm:
+#         valueFiles:
+#           - $values/values/services/netdata/values.yaml
+#   syncPolicy:
+#     automated: {}
+#     syncOptions:
+#       - CreateNamespace=true
