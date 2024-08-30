@@ -1,0 +1,7 @@
+alertmanager:
+  enabled: false
+grafana:
+  ingress:
+    enabled: true
+    hosts:
+      - monitoring.asdfx.us

@@ -1,0 +1,25 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monitoring
+  namespace: argocd
+spec:
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
+  project: default
+  sources:
+    - ref: values
+      repoURL: https://github.com/agjmills/kubernetes-homelab-apps
+      targetRevision: HEAD
+    - chart: kube-prometheus-stack
+      repoURL: https://prometheus-community.github.io/helm-charts
+      targetRevision: 62.3.1
+      helm:
+        valueFiles:
+          - $values/values/services/monitoring/values.yaml
+  destination:
+    server: {{ .Values.spec.destination.server }}
+    namespace: monitoring
